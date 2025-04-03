@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('raw_materials', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 255);
+            $table->string('unit', 50);
+            $table->decimal('current_stock', 8, 2);
             $table->timestamps();
         });
     }
