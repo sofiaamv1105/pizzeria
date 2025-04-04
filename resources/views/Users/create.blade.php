@@ -1,3 +1,6 @@
+@if (!Auth::check())
+    <script>window.location.href = "{{ route('login') }}";</script>
+@endif
 @extends('layouts.app')
 
 @section('content')

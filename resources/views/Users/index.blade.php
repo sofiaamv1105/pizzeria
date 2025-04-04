@@ -1,3 +1,6 @@
+@if (!Auth::check())
+    <script>window.location.href = "{{ route('login') }}";</script>
+@endif
 @extends('layouts.app')
 
 @section('content')
@@ -17,6 +20,15 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->role }}</td>
                 <td>
+                <td>
+            @if ($user->role === 'cliente' && $user->client)
+                {{ $user->client->address }}
+            @elseif ($user->role === 'empleado' && $user->employee)
+                {{ $user->employee->position }}
+            @else
+                -
+            @endif
+        </td>
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">Editar</a>
                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                         @csrf @method('DELETE')

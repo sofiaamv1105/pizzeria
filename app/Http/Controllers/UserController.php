@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Client;
+use App\Models\Employee;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -55,8 +59,9 @@ class UserController extends Controller
                 'hire_date' => $request->input('hire_date'),
             ]);
         }
+        
 
-        return redirect()->route('users.index')->with('success', 'Usuario creado correctamente.');
+        return redirect()->route('users.index')->with('success', 'Usuario creado correctamente');
     }
 
     /**
@@ -72,14 +77,18 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        return view('users.edit', compact('user'));
+        $user = User::findOrFail($id); // Obtener el usuario desde la base de datos
+        return view('users.edit', compact('user')); // Pasarlo a la vista
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
+        $user = User::findOrFail($id);
+
         $validated = $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => ['required', 'email', Rule::unique('users')->ignore($user->id)],
@@ -123,6 +132,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado.');
     }
