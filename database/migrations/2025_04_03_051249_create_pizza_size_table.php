@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pizza_id')->constrained('pizzas')->onDelete('cascade');
             $table->enum('size', ['pequeña', 'mediana', 'grande']);
-            $table->decimal('price', 8, 2);
+            $table->decimal('pizza_size_price', 8, 2);
             $table->timestamps();
         });
     }

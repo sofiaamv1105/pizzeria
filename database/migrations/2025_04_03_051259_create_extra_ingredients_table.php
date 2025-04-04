@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('extra_ingredients', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->decimal('price', 8, 2);
+            $table->string('extra_ingredients_name', 255);
+            $table->decimal('extra_ingredients_price', 8, 2);
             $table->timestamps();
         });
     }

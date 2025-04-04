@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('address',255)->nullable();
-            $table->string('phone',20)->nullable();
+            $table->string('client_address',255)->nullable();
+            $table->string('client_phone',20)->nullable();
             $table->timestamps();
         });
     }
