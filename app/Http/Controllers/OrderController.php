@@ -11,7 +11,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::with('client', 'branch')->get();
+        return response()->json($orders);
     }
 
     /**
@@ -27,15 +28,27 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'client_id' => 'required|exists:clients,id',
+            'branch_id' => 'required|exists:branches,id',
+            'total_price' => 'required|numeric',
+            'status' => 'required|in:pendiente,en_preparacion,listo,entregado',
+            'delivery_type' => 'required|in:en_local,a_domicilio',
+            'delivery_person_id' => 'nullable|exists:employees,id',
+        ]);
+
+        $order = Order::create($validated);
+        return response()->json($order, 201);
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        return response()->json($order->load('client', 'branch'));
+
     }
 
     /**
@@ -51,14 +64,19 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $validated = $request->validate([
+            'status' => 'required|in:pendiente,en_preparacion,listo,entregado',
+        ]);
 
+        $order->update($validated);
+        return response()->json($order);
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $order->delete();
+        return response()->json(['message' => 'Pedido eliminado'], 200);
     }
 }
