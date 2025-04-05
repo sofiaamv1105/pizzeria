@@ -15,8 +15,8 @@ class Client extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['user_id', 'client_address', 'client_phone'];
-
+    protected $fillable = ['user_id', 'address', 'phone'];
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

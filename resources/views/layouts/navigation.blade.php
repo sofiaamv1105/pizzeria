@@ -15,9 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                        {{ __('Usuarios') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('pizzas.index')" :active="request()->routeIs('pizzas.*')">
+                        {{ __('Pizza') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('pizza_sizes.index')" :active="request()->routeIs('pizza_sizes.*')">
                         {{ __('Tamaños de Pizza') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">
+                        {{ __('Cliente') }}
                     </x-nav-link>
                 </div>
             </div>

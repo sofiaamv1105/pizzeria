@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Client;
 
 class ClientController extends Controller
 {
@@ -11,7 +13,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::with('user')->get();
+        return view('clients.index', compact('clients'));
     }
 
     /**
@@ -19,7 +22,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('clients.create', compact('users'));
     }
 
     /**
@@ -27,7 +31,19 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        Client::create([
+            'user_id' => $validated['user_id'],
+            'address' => $validated['address'],
+            'phone' => $validated['phone'],
+        ]);
+
+        return redirect()->route('clients.index')->with('success', 'Cliente creado correctamente.');
     }
 
     /**
@@ -43,7 +59,9 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $users = User::all();
+        return view('clients.edit', compact('client', 'users'));
     }
 
     /**
@@ -51,7 +69,20 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        $client->update([
+            'user_id' => $validated['user_id'],
+            'address' => $validated['address'],
+            'phone' => $validated['phone'],
+        ]);
+
+        return redirect()->route('clients.index')->with('success', 'Cliente actualizado correctamente.');
     }
 
     /**
@@ -59,6 +90,8 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $client->delete();
+        return redirect()->route('clients.index')->with('success', 'Cliente eliminado correctamente.');
     }
 }

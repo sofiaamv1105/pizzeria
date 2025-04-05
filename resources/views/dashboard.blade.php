@@ -7,10 +7,7 @@
         {{-- Menú de navegación adicional --}}
         <div class="mb-4">
             <a href="{{ route('dashboard') }}" class="btn btn-primary">Inicio</a>
-            <a href="{{ route('users.index') }}" class="btn btn-outline-secondary">Gestión de Usuarios</a>
-            <a href="{{ route('pizzas.index') }}" class="btn btn-outline-secondary">Gestión de Pizzas</a>
         </div>
-
         {{-- Contenido principal --}}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">

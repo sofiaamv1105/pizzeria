@@ -32,36 +32,24 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'role'     => ['required', Rule::in(['cliente', 'empleado'])],
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|unique:users',
+        'password' => 'required|string|min:6',
+        'role' => 'required|string',
+    ]);
 
-        $validated['password'] = Hash::make($validated['password']);
+    User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+        'role' => $request->role,
+    ]);
 
-        $user = User::create($validated);
+    return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
+}
 
-        if ($validated['role'] === 'cliente') {
-            Client::create([
-                'user_id' => $user->id,
-                'address' => $request->input('address'),
-                'phone'   => $request->input('phone'),
-            ]);
-        } elseif ($validated['role'] === 'empleado') {
-            Employee::create([
-                'user_id' => $user->id,
-                'position' => $request->input('position'),
-                'identification_number' => $request->input('identification_number'),
-                'salary' => $request->input('salary'),
-                'hire_date' => $request->input('hire_date'),
-            ]);
-        }
-        
-        return redirect()->route('users.index')->with('success', 'Usuario creado correctamente');
-    }
 
     /**
      * Display the specified resource.
