@@ -17,13 +17,13 @@
         </div>
     @endif
 
-    <form action="{{ route('pizzas.update', $pizza->pizza_id) }}" method="POST">
+    <form action="{{ route('pizzas.update', $pizza->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="mb-3">
-            <label for="pizza_name" class="form-label">Nombre de la Pizza</label>
-            <input type="text" name="pizza_name" id="pizza_name" class="form-control" value="{{ $pizza->pizza_name }}" required>
+            <label for="name" class="form-label">Nombre de la Pizza</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ $pizza->name }}" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Actualizar Pizza</button>

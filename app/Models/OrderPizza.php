@@ -11,7 +11,7 @@ class OrderPizza extends Model
     use HasFactory;
 
     protected $table = 'order_pizza';   
-    protected $primaryKey = 'order_pizza_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['order_id', 'pizza_size_id', 'order_pizza_quantity'];

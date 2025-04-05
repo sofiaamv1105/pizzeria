@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\PizzaSizeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,7 +34,14 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.e
 
 Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
 Route::post('/pizzas', [PizzaController::class, 'store'])->name('pizzas.store');
-Route::get('/pizzas/pizza', [PizzaController::class, 'create'])->name('pizzas.create');
+Route::get('/pizzas/create', [PizzaController::class, 'create'])->name('pizzas.create');
 Route::delete('/pizzas/{pizza}', [PizzaController::class, 'destroy'])->name('pizzas.destroy');
 Route::put('/pizzas/{pizza}', [PizzaController::class, 'update'])->name('pizzas.update');
 Route::get('/pizzas/{pizza}/edit', [PizzaController::class, 'edit'])->name('pizzas.edit');
+
+Route::get('/pizza_sizes', [PizzaSizeController::class, 'index'])->name('pizza_sizes.index');
+Route::post('/pizza_sizes', [PizzaSizeController::class, 'store'])->name('pizza_sizes.store');
+Route::get('/pizza_sizes/create', [PizzaSizeController::class, 'create'])->name('pizza_sizes.create');
+Route::delete('/pizza_sizes/{pizza_size}', [PizzaSizeController::class, 'destroy'])->name('pizza_sizes.destroy');
+Route::put('/pizza_sizes/{pizza_size}', [PizzaSizeController::class, 'update'])->name('pizza_sizes.update');
+Route::get('/pizza_sizes/{pizza_size}/edit', [PizzaSizeController::class, 'edit'])->name('pizza_sizes.edit');

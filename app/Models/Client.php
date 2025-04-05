@@ -12,7 +12,7 @@ class Client extends Model
     use HasFactory;
 
     protected $table = 'clients';    
-    protected $primaryKey = 'client_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['user_id', 'client_address', 'client_phone'];

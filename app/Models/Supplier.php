@@ -11,7 +11,7 @@ class Supplier extends Model
     use HasFactory;
 
     protected $table = 'suppliers';
-    protected $primaryKey = 'supplier_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['supplier_name', 'contact_info', 'created_at', 'updated_at'];

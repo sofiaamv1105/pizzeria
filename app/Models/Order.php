@@ -12,9 +12,6 @@ class Order extends Model
     use HasFactory;
 
     protected $table = 'orders';    
-    protected $primaryKey = 'order_id';
-    public $timestamps = false;
-    protected $keyType = 'int';
     protected $fillable = ['client_id', 'branch_id', 'total_price', 'status', 'delivery_type', 'delivery_person_id'];
 
     public function client(): BelongsTo
@@ -34,11 +31,11 @@ class Order extends Model
 
     public function pizzaSizes(): BelongsToMany
     {
-        return $this->belongsToMany(PizzaSize::class, 'order_pizza')->withPivot('quantity');
+        return $this->belongsToMany(PizzaSize::class, 'order_pizza')->withPivot('order_pizza_quantity');
     }
 
     public function extraIngredients(): BelongsToMany
     {
-        return $this->belongsToMany(ExtraIngredient::class, 'order_extra_ingredient')->withPivot('quantity');
+        return $this->belongsToMany(ExtraIngredient::class, 'order_extra_ingredient')->withPivot('order_extra_quantity');
     }
 }

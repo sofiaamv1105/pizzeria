@@ -12,10 +12,10 @@ class Pizza extends Model
     use HasFactory;
     
     protected $table = 'pizzas';    
-    protected $primaryKey = 'pizza_id';
-    public $timestamps = false;
+    protected $primaryKey = 'id';
+    public $timestamps = true;
     protected $keyType = 'int';
-    protected $fillable = ['pizza_name'];
+    protected $fillable = ['name'];
 
     public function sizes(): HasMany
     {

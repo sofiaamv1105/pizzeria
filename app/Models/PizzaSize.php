@@ -11,10 +11,10 @@ class PizzaSize extends Model
     use HasFactory;
 
     protected $table = 'pizza_size';
-    protected $primaryKey = 'pizza_size_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['pizza_id', 'size', 'pizza_size_price'];
+    protected $fillable = ['pizza_id', 'size', 'price'];
 
     public function pizza(): BelongsTo
     {

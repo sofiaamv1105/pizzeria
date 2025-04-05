@@ -11,7 +11,7 @@ class Employee extends Model
     use HasFactory;
 
     protected $table = 'employees';    
-    protected $primaryKey = 'delivery_person_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['user_id', 'position', 'identification_number', 'salary', 'hire_date'];

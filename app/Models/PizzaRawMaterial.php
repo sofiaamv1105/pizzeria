@@ -11,7 +11,7 @@ class PizzaRawMaterial extends Model
     use HasFactory;
 
     protected $table = 'pizza_raw_material';
-    protected $primaryKey = 'pizza_raw_material_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['pizza_id', 'raw_material_id', 'pizza_raw_material_quantity'];

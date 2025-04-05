@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('raw_materials', function (Blueprint $table) {
+        Schema::create('pizza_size', function (Blueprint $table) {
             $table->id();
-            $table->string('raw_material_name', 255);
-            $table->string('unit', 50);
-            $table->decimal('current_stock', 8, 2);
+            $table->foreignId('pizza_id')->constrained('pizzas')->onDelete('cascade');
+            $table->enum('size', ['pequeña', 'mediana', 'grande']);
+            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('raw_materials');
+        Schema::dropIfExists('pizza_size');
     }
 };

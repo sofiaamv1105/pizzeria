@@ -11,7 +11,7 @@ class RawMaterial extends Model
     use HasFactory;
 
     protected $table = 'raw_materials';
-    protected $primaryKey = 'raw_material_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['raw_material_name', 'unit', 'current_stock', 'created_at', 'updated_at'];

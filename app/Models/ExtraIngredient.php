@@ -10,7 +10,7 @@ class ExtraIngredient extends Model
     use HasFactory;
 
     protected $table = 'extra_ingredients';    
-    protected $primaryKey = 'extra_ingredient_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['extra_ingredient_name', 'extra_ingredient_price'];

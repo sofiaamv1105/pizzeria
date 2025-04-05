@@ -24,11 +24,11 @@
         <tbody>
             @foreach ($pizzas as $pizza)
                 <tr>
-                    <td>{{ $pizza->pizza_id }}</td>
-                    <td>{{ $pizza->pizza_name }}</td>
+                    <td>{{ $pizza->id }}</td>
+                    <td>{{ $pizza->name }}</td>
                     <td>
-                        <a href="{{ route('pizzas.edit', $pizza->pizza_id) }}" class="btn btn-warning btn-sm">Editar</a>
-                        <form action="{{ route('pizzas.destroy', $pizza->pizza_id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('pizzas.edit', $pizza->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="{{ route('pizzas.destroy', $pizza->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar esta pizza?')">Eliminar</button>

@@ -11,7 +11,7 @@ class OrderExtraIngredient extends Model
     use HasFactory;
 
     protected $table = 'order_extra_ingredient';    
-    protected $primaryKey = 'order_extra_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['order_id', 'extra_ingredient_id', 'order_extra_quantity'];

@@ -30,11 +30,11 @@ class PizzaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pizza_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         Pizza::create([
-            'pizza_name' => $request->pizza_name,
+            'name' => $request->name,
         ]);
 
         return redirect()->route('pizzas.index')
@@ -64,12 +64,12 @@ class PizzaController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'pizza_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         $pizza = Pizza::findOrFail($id);
         $pizza->update([
-            'pizza_name' => $request->pizza_name,
+            'name' => $request->name,
         ]);
 
         return redirect()->route('pizzas.index')

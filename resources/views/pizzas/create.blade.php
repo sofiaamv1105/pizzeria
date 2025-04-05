@@ -22,8 +22,8 @@
         @csrf
 
         <div class="mb-3">
-            <label for="pizza_name" class="form-label">Nombre de la Pizza</label>
-            <input type="text" name="pizza_name" id="pizza_name" class="form-control" required>
+        <label for="name" class="form-label">Nombre de la Pizza</label>
+        <input type="text" name="name" id="name" class="form-control" required>
         </div>
 
         <button type="submit" class="btn btn-success">Guardar Pizza</button>

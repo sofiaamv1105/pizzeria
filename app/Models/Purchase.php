@@ -11,7 +11,7 @@ class Purchase extends Model
     use HasFactory;
 
     protected $table = 'purchases';
-    protected $primaryKey = 'purchase_id';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
     protected $fillable = ['supplier_id', 'raw_material_id', 'purchase_quantity', 'purchase_price', 'purchase_date'];
