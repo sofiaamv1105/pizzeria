@@ -7,6 +7,7 @@ use App\Http\Controllers\PizzaSizeController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,3 +62,10 @@ Route::get('/branches/create', [BranchController::class, 'create'])->name('branc
 Route::delete('/branches/{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
 Route::put('/branches/{branch}', [BranchController::class, 'update'])->name('branches.update');
 Route::get('/branches/{branch}/edit', [BranchController::class, 'edit'])->name('branches.edit');
+
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
+Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
+Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employees.update');
+Route::get('/employees/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
