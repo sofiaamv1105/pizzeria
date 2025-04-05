@@ -1,43 +1,84 @@
 @if (!Auth::check())
     <script>window.location.href = "{{ route('login') }}";</script>
 @endif
-@extends('layouts.app')
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Listado de Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('pizzas.index') }}">Pizzas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('pizza_sizes.index') }}">Tamaños</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="btn btn-outline-light btn-sm" type="submit">Cerrar sesión</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-@section('content')
-<div class="container">
-    <h1>Usuarios</h1>
-    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Nuevo Usuario</a>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nombre</th><th>Email</th><th>Rol</th><th>Acciones</th>
-            </tr>
+  <body>
+    <div class="container mt-4">
+      <h1>Listado de Usuarios</h1>
+      <a href="{{ route('users.create') }}" class="btn btn-success mb-3">Agregar Usuario</a>
+
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Acciones</th>
+          </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
-            <tr>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->role }}</td>
-                <td>
-                <td>
-            @if ($user->role === 'cliente' && $user->client)
-                {{ $user->client->address }}
-            @elseif ($user->role === 'empleado' && $user->employee)
-                {{ $user->employee->position }}
-            @else
-                -
-            @endif
-        </td>
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
-                        @csrf @method('DELETE')
-                        <button class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar usuario?')">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
+          @foreach ($users as $user)
+          <tr>
+            <th scope="row">{{ $user->id }}</th>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ ucfirst($user->role) }}</td>
+            <td>
+              <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">Editar</a>
+
+              <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block">
+                @csrf
+                @method('DELETE')
+                <input class="btn btn-danger btn-sm" type="submit" value="Eliminar" onclick="return confirm('¿Eliminar usuario?')">
+              </form>
+            </td>
+          </tr>
+          @endforeach
         </tbody>
-    </table>
-</div>
-@endsection
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,89 +1,88 @@
 @if (!Auth::check())
     <script>window.location.href = "{{ route('login') }}";</script>
 @endif
-@extends('layouts.app')
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editar Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('pizzas.index') }}">Pizzas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('pizza_sizes.index') }}">Tamaños</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="btn btn-outline-light btn-sm" type="submit">Cerrar sesión</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-@section('content')
-<div class="container">
-    <h2 class="mb-4">Editar Usuario</h2>
+  <body>
+    <div class="container mt-4">
+      <h2>Editar Usuario</h2>
 
-    <form action="{{ route('users.update', $user->id) }}" method="POST">
-        @csrf @method('PUT')
+      <form action="{{ route('users.update', $user->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
         <div class="mb-3">
-            <label>Nombre</label>
-            <input type="text" name="name" class="form-control" required value="{{ old('name', $user->name) }}">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $user->name) }}" required>
         </div>
 
         <div class="mb-3">
-            <label>Email</label>
-            <input type="email" name="email" class="form-control" required value="{{ old('email', $user->email) }}">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}" required>
         </div>
 
         <div class="mb-3">
-            <label>Contraseña (dejar en blanco si no se va a cambiar)</label>
-            <input type="password" name="password" class="form-control">
+          <label for="password" class="form-label">Contraseña (opcional)</label>
+          <input type="password" name="password" id="password" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label>Confirmar Contraseña</label>
-            <input type="password" name="password_confirmation" class="form-control">
+          <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
+          <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label>Rol</label>
-            <select name="role" class="form-control" id="role-select" required>
-                <option value="cliente" {{ $user->role === 'cliente' ? 'selected' : '' }}>Cliente</option>
-                <option value="empleado" {{ $user->role === 'empleado' ? 'selected' : '' }}>Empleado</option>
-            </select>
-        </div>
-
-        {{-- Campos cliente --}}
-        <div id="client-fields" style="{{ $user->role === 'cliente' ? '' : 'display:none;' }}">
-            <div class="mb-3">
-                <label>Dirección</label>
-                <input type="text" name="address" class="form-control" value="{{ $user->client->address ?? '' }}">
-            </div>
-            <div class="mb-3">
-                <label>Teléfono</label>
-                <input type="text" name="phone" class="form-control" value="{{ $user->client->phone ?? '' }}">
-            </div>
-        </div>
-
-        {{-- Campos empleado --}}
-        <div id="employee-fields" style="{{ $user->role === 'empleado' ? '' : 'display:none;' }}">
-            <div class="mb-3">
-                <label>Posición</label>
-                <select name="position" class="form-control">
-                    @foreach(['cajero', 'administrador', 'cocinero', 'mensajero'] as $pos)
-                        <option value="{{ $pos }}" {{ ($user->employee->position ?? '') === $pos ? 'selected' : '' }}>{{ ucfirst($pos) }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
-                <label>Identificación</label>
-                <input type="text" name="identification_number" class="form-control" value="{{ $user->employee->identification_number ?? '' }}">
-            </div>
-            <div class="mb-3">
-                <label>Salario</label>
-                <input type="number" step="0.01" name="salary" class="form-control" value="{{ $user->employee->salary ?? '' }}">
-            </div>
-            <div class="mb-3">
-                <label>Fecha de Contratación</label>
-                <input type="date" name="hire_date" class="form-control" value="{{ $user->employee->hire_date ?? '' }}">
-            </div>
+          <label for="role" class="form-label">Rol</label>
+          <select name="role" id="role" class="form-select" required>
+            <option value="cliente" {{ $user->role === 'cliente' ? 'selected' : '' }}>Cliente</option>
+            <option value="empleado" {{ $user->role === 'empleado' ? 'selected' : '' }}>Empleado</option>
+          </select>
         </div>
 
         <button type="submit" class="btn btn-success">Actualizar</button>
         <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
-
-<script>
-    document.getElementById('role-select').addEventListener('change', function () {
-        const role = this.value;
-        document.getElementById('client-fields').style.display = (role === 'cliente') ? 'block' : 'none';
-        document.getElementById('employee-fields').style.display = (role === 'empleado') ? 'block' : 'none';
-    });
-</script>
-@endsection
+      </form>
+    </div>
+  </body>
+</html>
