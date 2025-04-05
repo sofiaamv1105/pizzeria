@@ -6,6 +6,7 @@ use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\PizzaSizeController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BranchController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,3 +54,10 @@ Route::get('/clients/create', [ClientController::class, 'create'])->name('client
 Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
 Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
 Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+
+Route::get('/branches', [BranchController::class, 'index'])->name('branches.index');
+Route::post('/branches', [BranchController::class, 'store'])->name('branches.store');
+Route::get('/branches/create', [BranchController::class, 'create'])->name('branches.create');
+Route::delete('/branches/{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
+Route::put('/branches/{branch}', [BranchController::class, 'update'])->name('branches.update');
+Route::get('/branches/{branch}/edit', [BranchController::class, 'edit'])->name('branches.edit');

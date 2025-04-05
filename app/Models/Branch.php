@@ -10,7 +10,7 @@ class Branch extends Model
     use HasFactory;
 
     protected $table = 'branches';    
-    protected $fillable = ['branch_name', 'branch_address'];
+    protected $fillable = ['name', 'address'];
 
     public function orders()
     {
