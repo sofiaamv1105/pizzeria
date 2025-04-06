@@ -13,5 +13,5 @@ class ExtraIngredient extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['extra_ingredient_name', 'extra_ingredient_price'];
+    protected $fillable = ['name', 'price'];
 }
