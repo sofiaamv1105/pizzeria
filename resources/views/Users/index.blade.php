@@ -29,7 +29,13 @@
           <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+          <a class="nav-link" href="{{ route('branches.index') }}">Sucursales</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('employees.index') }}">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('orders.index') }}">Pedidos</a>
         </li>
       </ul>
       <ul class="navbar-nav">
@@ -47,6 +53,7 @@
   <body>
     <div class="container mt-4">
       <h1>Listado de Usuarios</h1>
+      
       <a href="{{ route('users.create') }}" class="btn btn-success mb-3">Agregar Usuario</a>
 
       <table class="table table-bordered">

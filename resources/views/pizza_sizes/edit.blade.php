@@ -16,17 +16,23 @@
     
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
+      <li class="nav-item">
           <a class="nav-link" href="{{ route('pizzas.index') }}">Pizzas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('pizza_sizes.index') }}">Tamaños</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('branches.index') }}">Sucursales</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('employees.index') }}">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('orders.index') }}">Pedidos</a>
         </li>
       </ul>
       <ul class="navbar-nav">

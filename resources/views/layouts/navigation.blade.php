@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-green-100 border-b border-black-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -9,33 +9,6 @@
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                        {{ __('Usuarios') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('pizzas.index')" :active="request()->routeIs('pizzas.*')">
-                        {{ __('Pizza') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('pizza_sizes.index')" :active="request()->routeIs('pizza_sizes.*')">
-                        {{ __('Tamaños de Pizza') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">
-                        {{ __('Cliente') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.*')">
-                        {{ __('Sucursales') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.*')">
-                        {{ __('Empleados') }}
-                    </x-nav-link>
-                </div>
-            </div>
-
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">

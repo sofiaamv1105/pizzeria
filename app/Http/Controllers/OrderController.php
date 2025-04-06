@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Client;
+use App\Models\Branch;
+use App\Models\Employee;
 
 class OrderController extends Controller
 {
@@ -11,8 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('client', 'branch')->get();
-        return response()->json($orders);
+        $orders = Order::with(['client', 'branch', 'deliveryPerson'])->get();
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -20,7 +24,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        $branches = Branch::all();
+        $employees = Employee::all();
+        return view('orders.create', compact('clients', 'branches', 'employees'));
     }
 
     /**
@@ -31,14 +38,14 @@ class OrderController extends Controller
         $validated = $request->validate([
             'client_id' => 'required|exists:clients,id',
             'branch_id' => 'required|exists:branches,id',
-            'total_price' => 'required|numeric',
+            'delivery_person_id' => 'nullable|exists:employees,id',
+            'total_price' => 'required|numeric|min:0',
             'status' => 'required|in:pendiente,en_preparacion,listo,entregado',
             'delivery_type' => 'required|in:en_local,a_domicilio',
-            'delivery_person_id' => 'nullable|exists:employees,id',
         ]);
 
-        $order = Order::create($validated);
-        return response()->json($order, 201);
+        Order::create($validated);
+        return redirect()->route('orders.index')->with('success', 'Pedido creado correctamente.');
     }
 
 
@@ -47,8 +54,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        return response()->json($order->load('client', 'branch'));
-
+        return view('orders.show', compact('order'));
     }
 
     /**
@@ -56,27 +62,37 @@ class OrderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $clients = Client::all();
+        $branches = Branch::all();
+        $employees = Employee::all();
+        return view('orders.edit', compact('order', 'clients', 'branches', 'employees'));
     }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
+        $order = Order::findOrFail($id);
         $validated = $request->validate([
+            'client_id' => 'required|exists:clients,id',
+            'branch_id' => 'required|exists:branches,id',
+            'delivery_person_id' => 'nullable|exists:employees,id',
+            'total_price' => 'required|numeric|min:0',
             'status' => 'required|in:pendiente,en_preparacion,listo,entregado',
+            'delivery_type' => 'required|in:en_local,a_domicilio',
         ]);
 
         $order->update($validated);
-        return response()->json($order);
+        return redirect()->route('orders.index')->with('success', 'Pedido actualizado correctamente.');
     }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
+        $order = Order::findOrFail($id);
         $order->delete();
-        return response()->json(['message' => 'Pedido eliminado'], 200);
+        return redirect()->route('orders.index')->with('success', 'Pedido eliminado correctamente.');
     }
 }

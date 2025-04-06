@@ -31,6 +31,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('branches.index') }}">Sucursales</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('orders.index') }}">Pedidos</a>
+        </li>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">

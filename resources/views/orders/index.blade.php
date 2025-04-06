@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tamaños de Pizza</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Listado de Pedidos</title>
   </head>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container-fluid">
@@ -16,8 +16,11 @@
     
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
-      <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('pizzas.index') }}">Pizzas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('pizza_sizes.index') }}">Tamaños</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
@@ -30,9 +33,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('employees.index') }}">Empleados</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('orders.index') }}">Pedidos</a>
         </li>
       </ul>
       <ul class="navbar-nav">
@@ -49,32 +49,37 @@
 
   <body>
     <div class="container mt-4">
-      <h1 class="mb-4">Tamaños de Pizza</h1>
-
-      <a href="{{ route('pizza_sizes.create') }}" class="btn btn-primary mb-3">Agregar tamaño</a>
-
+      <h1>Listado de Pedidos</h1>
+      <a href="{{ route('orders.create') }}" class="btn btn-success mb-3">Agregar Pedido</a>
       <table class="table table-bordered">
-        <thead class="table-dark">
+        <thead>
           <tr>
-            <th>Pizza</th>
-            <th>Tamaño</th>
-            <th>Precio</th>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Sucursal</th>
+            <th>Repartidor</th>
+            <th>Precio Total</th>
+            <th>Estado</th>
+            <th>Tipo Entrega</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($pizzaSizes as $size)
+          @foreach ($orders as $order)
             <tr>
-              <td>{{ $size->pizza->name }}</td>
-              <td>{{ ucfirst($size->size) }}</td>
-              <td>${{ number_format($size->price, 2) }}</td>
+              <td>{{ $order->id }}</td>
+              <td>{{ $order->client->user->name }}</td>
+              <td>{{ $order->branch->name }}</td>
+              <td>{{ $order->deliveryPerson->user->name ?? 'N/A' }}</td>
+              <td>${{ $order->total_price }}</td>
+              <td>{{ $order->status }}</td>
+              <td>{{ $order->delivery_type }}</td>
               <td>
-                <a href="{{ route('pizza_sizes.edit', $size) }}" class="btn btn-sm btn-warning">Editar</a>
-
-                <form action="{{ route('pizza_sizes.destroy', $size) }}" method="POST" style="display:inline;">
+                <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-info btn-sm">Editar</a>
+                <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline-block;">
                   @csrf
                   @method('DELETE')
-                  <button class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro?')">Eliminar</button>
+                  <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
                 </form>
               </td>
             </tr>
