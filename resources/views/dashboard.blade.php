@@ -87,6 +87,9 @@
         <a href="{{ route('orders.index') }}" class="{{ request()->routeIs('orders.*') ? 'active' : '' }}">
             Pedidos
         </a>
+        <a href="{{ route('ingredients.index') }}" class="{{ request()->routeIs('ingredients.*') ? 'active' : '' }}">
+            Ingredientes
+        </a>
     </div>
 </div>
 @endsection

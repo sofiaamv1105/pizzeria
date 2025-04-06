@@ -13,29 +13,7 @@
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-          <a class="nav-link" href="{{ route('pizzas.index') }}">Pizzas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('branches.index') }}">Sucursales</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('employees.index') }}">Empleados</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('orders.index') }}">Pedidos</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
+    <ul class="navbar-nav">
         <li class="nav-item">
           <form method="POST" action="{{ route('logout') }}">
             @csrf
@@ -44,9 +22,7 @@
         </li>
       </ul>
     </div>
-  </div>
 </nav>
-
   <body>
     <div class="container mt-4">
       <h1 class="mb-4">Tamaños de Pizza</h1>

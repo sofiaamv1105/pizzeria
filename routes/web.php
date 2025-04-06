@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\IngredientController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -77,3 +78,10 @@ Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.c
 Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
 Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+
+Route::get('/ingredients', [IngredientController::class, 'index'])->name('ingredients.index');
+Route::post('/ingredients', [IngredientController::class, 'store'])->name('ingredients.store');
+Route::get('/ingredients/create', [IngredientController::class, 'create'])->name('ingredients.create');
+Route::delete('/ingredients/{ingredient}', [IngredientController::class, 'destroy'])->name('ingredients.destroy');
+Route::put('/ingredients/{ingredient}', [IngredientController::class, 'update'])->name('ingredients.update');
+Route::get('/ingredients/{ingredient}/edit', [IngredientController::class, 'edit'])->name('ingredients.edit');
