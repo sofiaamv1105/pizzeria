@@ -90,6 +90,9 @@
         <a href="{{ route('ingredients.index') }}" class="{{ request()->routeIs('ingredients.*') ? 'active' : '' }}">
             Ingredientes
         </a>
+        <a href="{{ route('pizza_ingredients.index') }}" class="{{ request()->routeIs('pizza_ingredients.*') ? 'active' : '' }}">
+            Ingredientes de Pizza
+        </a>
     </div>
 </div>
 @endsection

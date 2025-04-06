@@ -10,6 +10,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\PizzaIngredientController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -85,3 +86,10 @@ Route::get('/ingredients/create', [IngredientController::class, 'create'])->name
 Route::delete('/ingredients/{ingredient}', [IngredientController::class, 'destroy'])->name('ingredients.destroy');
 Route::put('/ingredients/{ingredient}', [IngredientController::class, 'update'])->name('ingredients.update');
 Route::get('/ingredients/{ingredient}/edit', [IngredientController::class, 'edit'])->name('ingredients.edit');
+
+Route::get('/pizza_ingredients', [PizzaIngredientController::class, 'index'])->name('pizza_ingredients.index');
+Route::post('/pizza_ingredients', [PizzaIngredientController::class, 'store'])->name('pizza_ingredients.store');
+Route::get('/pizza_ingredients/create', [PizzaIngredientController::class, 'create'])->name('pizza_ingredients.create');
+Route::delete('/pizza_ingredients/{pizza_ingredient}', [PizzaIngredientController::class, 'destroy'])->name('pizza_ingredients.destroy');
+Route::put('/pizza_ingredients/{pizza_ingredient}', [PizzaIngredientController::class, 'update'])->name('pizza_ingredients.update');
+Route::get('/pizza_ingredients/{pizza_ingredient}/edit', [PizzaIngredientController::class, 'edit'])->name('pizza_ingredients.edit');
