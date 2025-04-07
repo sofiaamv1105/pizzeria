@@ -14,7 +14,7 @@ class Supplier extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['supplier_name', 'contact_info', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'contact_info', 'created_at', 'updated_at'];
 
     public function purchases(): HasMany
     {

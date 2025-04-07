@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
@@ -11,7 +12,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::all();
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -19,7 +21,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.create');
     }
 
     /**
@@ -27,7 +29,13 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'contact_info' => 'nullable|string|max:255',
+        ]);
+
+        Supplier::create($request->all());
+        return redirect()->route('suppliers.index');
     }
 
     /**
@@ -43,7 +51,8 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -51,7 +60,14 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'contact_info' => 'nullable|string|max:255',
+        ]);
+
+        $supplier->update($request->all());
+        return redirect()->route('suppliers.index');
     }
 
     /**
@@ -59,6 +75,8 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
+        return redirect()->route('suppliers.index');
     }
 }
