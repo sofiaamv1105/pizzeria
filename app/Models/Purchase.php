@@ -14,7 +14,7 @@ class Purchase extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['supplier_id', 'raw_material_id', 'purchase_quantity', 'purchase_price', 'purchase_date'];
+    protected $fillable = ['supplier_id', 'raw_material_id', 'quantity', 'purchase_price', 'purchase_date'];
 
     public function supplier(): BelongsTo
     {
