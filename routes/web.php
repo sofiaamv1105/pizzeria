@@ -14,6 +14,7 @@ use App\Http\Controllers\PizzaIngredientController;
 use App\Http\Controllers\ExtraIngredientController;
 use App\Http\Controllers\OrderExtraIngredientController;
 use App\Http\Controllers\OrderPizzaController;
+use App\Http\Controllers\RawMaterialController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -117,3 +118,10 @@ Route::get('/order_pizzas/create', [OrderPizzaController::class, 'create'])->nam
 Route::delete('/order_pizzas/{order_pizza}', [OrderPizzaController::class, 'destroy'])->name('order_pizzas.destroy');
 Route::put('/order_pizzas/{order_pizza}', [OrderPizzaController::class, 'update'])->name('order_pizzas.update');
 Route::get('/order_pizzas/{order_pizza}/edit', [OrderPizzaController::class, 'edit'])->name('order_pizzas.edit');
+
+Route::get('/raw_materials', [RawMaterialController::class, 'index'])->name('raw_materials.index');
+Route::post('/raw_materials', [RawMaterialController::class, 'store'])->name('raw_materials.store');
+Route::get('/raw_materials/create', [RawMaterialController::class, 'create'])->name('raw_materials.create');
+Route::delete('/raw_materials/{raw_material}', [RawMaterialController::class, 'destroy'])->name('raw_materials.destroy');
+Route::put('/raw_materials/{raw_material}', [RawMaterialController::class, 'update'])->name('raw_materials.update');
+Route::get('/raw_materials/{raw_material}/edit', [RawMaterialController::class, 'edit'])->name('raw_materials.edit');
