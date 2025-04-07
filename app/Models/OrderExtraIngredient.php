@@ -14,7 +14,7 @@ class OrderExtraIngredient extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['order_id', 'extra_ingredient_id', 'order_extra_quantity'];
+    protected $fillable = ['order_id', 'extra_ingredient_id', 'quantity'];
 
     public function order(): BelongsTo
     {
