@@ -108,6 +108,9 @@
         <a href="{{ route('suppliers.index') }}" class="{{ request()->routeIs('suppliers.*') ? 'active' : '' }}">
             Proveedores
         </a>
+        <a href="{{ route('pizza_raw_materials.index') }}" class="{{ request()->routeIs('pizza_raw_materials.*') ? 'active' : '' }}">
+            Materia Prima de Pizzas
+        </a>
     </div>
 </div>
 @endsection
