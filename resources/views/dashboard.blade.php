@@ -111,6 +111,9 @@
         <a href="{{ route('pizza_raw_materials.index') }}" class="{{ request()->routeIs('pizza_raw_materials.*') ? 'active' : '' }}">
             Materia Prima de Pizzas
         </a>
+        <a href="{{ route('purchases.index') }}" class="{{ request()->routeIs('purchases.*') ? 'active' : '' }}">
+            Compras
+        </a>
     </div>
 </div>
 @endsection

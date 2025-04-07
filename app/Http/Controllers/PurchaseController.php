@@ -57,20 +57,22 @@ class PurchaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Purchase $purchase)
+    public function edit($id)
     {
-        $purchase = Purchase::findOrFail($id);
-        $suppliers = Supplier::all();
-        $rawMaterials = RawMaterial::all();
-        return view('purchases.edit', compact('purchase', 'suppliers', 'rawMaterials'));
-    }
+       $purchase = Purchase::findOrFail($id);
+       $suppliers = Supplier::all();
+       $rawMaterials = RawMaterial::all();
+
+    return view('purchases.edit', compact('purchase', 'suppliers', 'rawMaterials'));
+   }
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Purchase $purchase)
     {
-        $purchase = Purchase::findOrFail($id);
         $request->validate([
             'supplier_id' => 'required|exists:suppliers,id',
             'raw_material_id' => 'required|exists:raw_materials,id',
@@ -88,7 +90,6 @@ class PurchaseController extends Controller
      */
     public function destroy(Purchase $purchase)
     {
-        $purchase = Purchase::findOrFail($id);
         $purchase->delete();
         return redirect()->route('purchases.index')->with('success', 'Compra eliminada con éxito.');
     }

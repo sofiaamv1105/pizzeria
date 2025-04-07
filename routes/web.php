@@ -17,6 +17,7 @@ use App\Http\Controllers\OrderPizzaController;
 use App\Http\Controllers\RawMaterialController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PizzaRawMaterialController;
+use App\Http\Controllers\PurchaseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -141,3 +142,10 @@ Route::get('/pizza_raw_materials/create', [PizzaRawMaterialController::class, 'c
 Route::delete('/pizza_raw_materials/{pizza_raw_material}', [PizzaRawMaterialController::class, 'destroy'])->name('pizza_raw_materials.destroy');
 Route::put('/pizza_raw_materials/{pizza_raw_material}', [PizzaRawMaterialController::class, 'update'])->name('pizza_raw_materials.update');
 Route::get('/pizza_raw_materials/{pizza_raw_material}/edit', [PizzaRawMaterialController::class, 'edit'])->name('pizza_raw_materials.edit');
+
+Route::get('/purchases', [PurchaseController::class, 'index'])->name('purchases.index');
+Route::post('/purchases', [PurchaseController::class, 'store'])->name('purchases.store');
+Route::get('/purchases/create', [PurchaseController::class, 'create'])->name('purchases.create');
+Route::delete('/purchases/{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.destroy');
+Route::put('/purchases/{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
+Route::get('/purchases/{purchases}/edit', [PurchaseController::class, 'edit'])->name('purchases.edit');
