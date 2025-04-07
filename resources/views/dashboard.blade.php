@@ -105,6 +105,9 @@
         <a href="{{ route('raw_materials.index') }}" class="{{ request()->routeIs('raw_materials.*') ? 'active' : '' }}">
             Materia Prima
         </a>
+        <a href="{{ route('suppliers.index') }}" class="{{ request()->routeIs('suppliers.*') ? 'active' : '' }}">
+            Proveedores
+        </a>
     </div>
 </div>
 @endsection

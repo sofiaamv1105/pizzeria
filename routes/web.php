@@ -15,6 +15,7 @@ use App\Http\Controllers\ExtraIngredientController;
 use App\Http\Controllers\OrderExtraIngredientController;
 use App\Http\Controllers\OrderPizzaController;
 use App\Http\Controllers\RawMaterialController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -125,3 +126,10 @@ Route::get('/raw_materials/create', [RawMaterialController::class, 'create'])->n
 Route::delete('/raw_materials/{raw_material}', [RawMaterialController::class, 'destroy'])->name('raw_materials.destroy');
 Route::put('/raw_materials/{raw_material}', [RawMaterialController::class, 'update'])->name('raw_materials.update');
 Route::get('/raw_materials/{raw_material}/edit', [RawMaterialController::class, 'edit'])->name('raw_materials.edit');
+
+Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
+Route::post('/suppliers', [SupplierController::class, 'store'])->name('suppliers.store');
+Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('suppliers.create');
+Route::delete('/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('suppliers.destroy');
+Route::put('/suppliers/{supplier}', [SupplierController::class, 'update'])->name('suppliers.update');
+Route::get('/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('suppliers.edit');

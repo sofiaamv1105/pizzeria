@@ -14,7 +14,7 @@ class PizzaRawMaterial extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['pizza_id', 'raw_material_id', 'pizza_raw_material_quantity'];
+    protected $fillable = ['pizza_id', 'raw_material_id', 'quantity'];
 
     public function pizza(): BelongsTo
     {
