@@ -14,7 +14,7 @@ class OrderPizza extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $keyType = 'int';
-    protected $fillable = ['order_id', 'pizza_size_id', 'order_pizza_quantity'];
+    protected $fillable = ['order_id', 'pizza_size_id', 'quantity'];
 
     public function order(): BelongsTo
     {

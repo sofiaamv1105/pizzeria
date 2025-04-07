@@ -13,6 +13,7 @@ use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\PizzaIngredientController;
 use App\Http\Controllers\ExtraIngredientController;
 use App\Http\Controllers\OrderExtraIngredientController;
+use App\Http\Controllers\OrderPizzaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -109,3 +110,10 @@ Route::get('/order_extra_ingredients/create', [OrderExtraIngredientController::c
 Route::delete('/order_extra_ingredients/{order_extra_ingredient}', [OrderExtraIngredientController::class, 'destroy'])->name('order_extra_ingredients.destroy');
 Route::put('/order_extra_ingredients/{order_extra_ingredient}', [OrderExtraIngredientController::class, 'update'])->name('order_extra_ingredients.update');
 Route::get('/order_extra_ingredients/{order_extra_ingredient}/edit', [OrderExtraIngredientController::class, 'edit'])->name('order_extra_ingredients.edit');
+
+Route::get('/order_pizzas', [OrderPizzaController::class, 'index'])->name('order_pizzas.index');
+Route::post('/order_pizzas', [OrderPizzaController::class, 'store'])->name('order_pizzas.store');
+Route::get('/order_pizzas/create', [OrderPizzaController::class, 'create'])->name('order_pizzas.create');
+Route::delete('/order_pizzas/{order_pizza}', [OrderPizzaController::class, 'destroy'])->name('order_pizzas.destroy');
+Route::put('/order_pizzas/{order_pizza}', [OrderPizzaController::class, 'update'])->name('order_pizzas.update');
+Route::get('/order_pizzas/{order_pizza}/edit', [OrderPizzaController::class, 'edit'])->name('order_pizzas.edit');

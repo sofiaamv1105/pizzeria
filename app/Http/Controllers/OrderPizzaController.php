@@ -15,7 +15,7 @@ class OrderPizzaController extends Controller
     public function index()
     {
         $orderPizzas = OrderPizza::with(['order', 'pizzaSize'])->get();
-        return view('order_pizza.index', compact('orderPizzas'));
+        return view('order_pizzas.index', compact('orderPizzas'));
     }
 
     /**
@@ -25,7 +25,7 @@ class OrderPizzaController extends Controller
     {
         $orders = Order::all();
         $pizzaSizes = PizzaSize::all();
-        return view('order_pizza.create', compact('orders', 'pizzaSizes'));
+        return view('order_pizzas.create', compact('orders', 'pizzaSizes'));
     }
 
     /**
@@ -41,7 +41,7 @@ class OrderPizzaController extends Controller
 
         OrderPizza::create($request->all());
 
-        return redirect()->route('order_pizza.index');
+        return redirect()->route('order_pizzas.index');
     }
 
     /**
@@ -57,9 +57,10 @@ class OrderPizzaController extends Controller
      */
     public function edit(string $id)
     {
+        $orderPizza = OrderPizza::findOrFail($id);
         $orders = Order::all();
         $pizzaSizes = PizzaSize::all();
-        return view('order_pizza.edit', compact('orderPizza', 'orders', 'pizzaSizes'));
+        return view('order_pizzas.edit', compact('orderPizza', 'orders', 'pizzaSizes'));
     }
 
     /**
@@ -67,6 +68,7 @@ class OrderPizzaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $orderPizza = OrderPizza::findOrFail($id);
         $request->validate([
             'order_id' => 'required|exists:orders,id',
             'pizza_size_id' => 'required|exists:pizza_size,id',
@@ -75,7 +77,7 @@ class OrderPizzaController extends Controller
 
         $orderPizza->update($request->all());
 
-        return redirect()->route('order_pizza.index');
+        return redirect()->route('order_pizzas.index');
     }
 
     /**
@@ -83,7 +85,8 @@ class OrderPizzaController extends Controller
      */
     public function destroy(string $id)
     {
+        $orderPizza = OrderPizza::findOrFail($id);
         $orderPizza->delete();
-        return redirect()->route('order_pizza.index');
+        return redirect()->route('order_pizzas.index');
     }
 }

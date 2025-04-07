@@ -99,6 +99,9 @@
         <a href="{{ route('order_extra_ingredients.index') }}" class="{{ request()->routeIs('order_extra_ingredients.*') ? 'active' : '' }}">
             Ingredientes Extra de Pizza para Pedidos
         </a>
+        <a href="{{ route('order_pizzas.index') }}" class="{{ request()->routeIs('order_pizzas.*') ? 'active' : '' }}">
+            Pedidos de Pizza
+        </a>
     </div>
 </div>
 @endsection
