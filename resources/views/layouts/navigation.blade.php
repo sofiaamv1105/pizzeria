@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                       <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Logo Pizza" class="h-9 w-auto">
                     </a>
                 </div>
             <!-- Settings Dropdown -->

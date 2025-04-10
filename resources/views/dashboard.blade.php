@@ -61,7 +61,7 @@
     <div class="pizza-menu">
         <img src="{{ asset('images/pizzeria.jpg') }}" alt="Pizzería">
 
-        <div class="menu-header">Menú Principal</div>
+        <div class="menu-header">🍕 Menú Principal 🍕</div>
 
         <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
             Dashboard
