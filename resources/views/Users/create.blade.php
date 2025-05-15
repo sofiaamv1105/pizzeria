@@ -46,12 +46,11 @@
         </div>
 
         <div class="mb-3">
-          <label for="role" class="form-label">Rol</label>
-          <select name="role" id="role" class="form-select" required>
-            <option value="">Seleccione un rol</option>
-            <option value="cliente">Cliente</option>
-            <option value="empleado">Empleado</option>
-          </select>
+         <label for="role" class="form-label">Rol</label>
+         <select name="role" id="role" class="form-select" required>
+          <option value="cliente">Cliente</option>
+          <option value="empleado">Empleado</option>
+         </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
